@@ -1,6 +1,6 @@
 {
   "name": "ml-affine-transform",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Get and apply affine transform to 2D points.",
   "main": "./lib/index.js",
   "module": "./lib-esm/index.js",
