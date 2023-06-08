@@ -1,7 +1,3 @@
-/**
- * My module
- * @returns A very important number
- */
-export function myModule(): number {
-  return 42;
-}
+export * from './getAffineTransform';
+export * from './applyTransformToPoint';
+export * from './applyTransformToPoints';
