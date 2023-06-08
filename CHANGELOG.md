@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/mljs/affine-transform/compare/v1.0.1...v1.0.2) (2023-06-08)
+
+
+### Documentation
+
+* enhance readme ([49c4493](https://github.com/mljs/affine-transform/commit/49c44937a95406175769afa2c9ff959ba2d3f707))
+
 ## [1.0.1](https://github.com/mljs/affine-transform/compare/v1.0.0...v1.0.1) (2023-06-08)
 
 
