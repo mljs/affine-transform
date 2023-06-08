@@ -2,6 +2,21 @@ import Matrix from 'ml-matrix';
 
 import { getAffineTransform } from '../getAffineTransform';
 
+test('same source and destination', () => {
+  const sourceMatrix = new Matrix([
+    [1, 1, -3],
+    [2, -1, -1],
+    [1, 1, 1],
+  ]);
+
+  const result = getAffineTransform(sourceMatrix, sourceMatrix);
+
+  expect(result).toBeDeepCloseTo({
+    translation: { x: 0, y: 0 },
+    rotation: 0,
+    scale: 1,
+  });
+});
 test('3 points', () => {
   const sourceMatrix = new Matrix([
     [1, 1, -3],
@@ -215,4 +230,79 @@ describe('scale different from 1', () => {
       rotation: 0,
     });
   });
+});
+
+describe('test errors messages', () => {
+  it('nb of points differs between source and destination', () => {
+    const source = new Matrix([
+      [5, 5, 1],
+      [-4, -2, -2],
+      [1, 1, 1],
+    ]);
+    const destination = new Matrix([
+      [0.5, 2.5, 2.5, 0.5],
+      [-2, -2, -1, -1],
+      [1, 1, 1, 1],
+    ]);
+    expect(() => {
+      getAffineTransform(source, destination);
+    }).toThrow(
+      'Source and destination matrices should have same dimensions (same number of points).',
+    );
+  });
+  it('there should be at least 3 points', () => {
+    const source = new Matrix([
+      [5, 1],
+      [-2, -2],
+      [1, 1],
+    ]);
+    const destination = new Matrix([
+      [2.5, 0.5],
+      [-1, -1],
+      [1, 1],
+    ]);
+    expect(() => {
+      getAffineTransform(source, destination);
+    }).toThrow(
+      'Matrices should contains at least three points for the algorithm to run properly.',
+    );
+  });
+});
+
+test('R determinant negative', () => {
+  const sourceT = new Matrix([
+    [23.883, 166.05, 0],
+    [65.38, 67.402, 0],
+    [102.56, 229.35, 0],
+    [103.26, 206.88, 0],
+    [104.89, 198.93, 0],
+    [129.65, 116.17, 0],
+    [135.97, 171.27, 0],
+    [138.26, 177.16, 0],
+  ]);
+
+  const destinationT = new Matrix([
+    [16.976, 110.74, 0],
+    [102.47, 47.257, 0],
+    [53.48, 204.81, 0],
+    [65.257, 185.77, 0],
+    [70.537, 179.81, 0],
+    [133.41, 120.39, 0],
+    [111.33, 171.34, 0],
+    [110.47, 177.29, 0],
+  ]);
+
+  const source = sourceT.transpose();
+  const destination = destinationT.transpose();
+
+  const result = getAffineTransform(source, destination);
+
+  expect(result).toBeDeepCloseTo(
+    {
+      translation: { x: 79.61, y: -44.32 },
+      scale: 1,
+      rotation: 30.09,
+    },
+    1,
+  );
 });

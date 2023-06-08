@@ -13,7 +13,7 @@ Get and apply affine transform to 2D points.
 
 ## Main steps of the algorithm to get the affine transform
 
-Based on the tutorial: https://nghiaho.com/?page_id=67
+Based on the tutorial: https://nghiaho.com/?page_id=671
 
 1. Find centroids of the two point sets and deduce the translation from one to the other
 2. Find rotation using SVD

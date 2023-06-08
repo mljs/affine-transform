@@ -1,4 +1,4 @@
-import Matrix, { SingularValueDecomposition } from 'ml-matrix';
+import Matrix, { SingularValueDecomposition, determinant } from 'ml-matrix';
 
 import { getCentroid } from './getCentroid';
 
@@ -26,6 +26,16 @@ export function getAffineTransform(
   source: Matrix,
   destination: Matrix,
 ): AffineTransform {
+  if (source.columns !== destination.columns) {
+    throw new Error(
+      'Source and destination matrices should have same dimensions (same number of points).',
+    );
+  }
+  if (source.columns < 3) {
+    throw new Error(
+      'Matrices should contains at least three points for the algorithm to run properly.',
+    );
+  }
   const sourceCentroid = getCentroid(source);
   const destinationCentroid = getCentroid(destination);
 
@@ -56,15 +66,11 @@ export function getAffineTransform(
   const V = svd.rightSingularVectors;
 
   let rotation = V.mmul(U.transpose());
+  if (determinant(rotation) < 0) {
+    const newV = V.mulColumn(2, -1);
 
-  // if (determinant(rotation) === -1) {
-  //   console.log('special');
-  //   const newSvd = new SingularValueDecomposition(rotation);
-  //   const newU = newSvd.leftSingularVectors;
-  //   const newV = newSvd.rightSingularVectors.mulColumn(2, -1);
-
-  //   rotation = newV.mmul(newU.transpose());
-  // }
+    rotation = newV.mmul(U.transpose());
+  }
 
   let angleDegrees =
     (Math.atan2(rotation.get(1, 0), rotation.get(0, 0)) * 180) / Math.PI;
