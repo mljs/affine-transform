@@ -18,7 +18,7 @@ Based on the tutorial: https://nghiaho.com/?page_id=671
 1. Find centroids of the two point sets and deduce the translation from one to the other
 2. Find rotation using SVD
 
-When the transform is applied to a function, the operations are made in the following order;
+When the transform is applied to a function, the operations are made in the following order:
 
 1. Rotate
 2. Scale
@@ -26,12 +26,13 @@ When the transform is applied to a function, the operations are made in the foll
 
 ## API
 
-The inputs of the functions are 3xN matrices consisting of the source and the destination points. The third dimension for Z must be padded with zeros. The output is an object containing the x and y translations as well as the angle in degrees.
+The inputs of the functions are 3xN matrices consisting of the source and the destination points. The third dimension for Z must be padded with ones. The output is an object containing the x and y translations as well as the anti-clockwise angle in degrees.
 
 ```ts
 export interface AffineTransformParameters {
   rotation: number;
   translation: { x: number; y: number };
+  scale: number;
 }
 
 export function getAffineTransform(
@@ -42,7 +43,7 @@ export function getAffineTransform(
 
 ## Coordinates system
 
-In this project, standard x and y as considered, as in mathematics (y pointing up and x to the right). The angles are expressed in degrees and positive angles are in anti-clockwise direction.
+In this project, standard x and y axes are used, as in mathematics (y pointing up and x to the right). The angles are expressed in degrees and positive angles are in the anti-clockwise direction.
 
 ## Example
 
@@ -51,9 +52,9 @@ import Matrix from 'ml-matrix';
 import { getAffineTransform } from '../getAffineTransform';
 
 const sourceMatrix = new Matrix([
-  [1, 1, -3],
-  [2, -1, -1],
-  [1, 1, 1],
+  [1, 1, -3], // x
+  [2, -1, -1], // y
+  [1, 1, 1], // z
 ]);
 const destinationMatrix = new Matrix([
   [4, -2, -2],
