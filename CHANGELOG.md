@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/mljs/affine-transform/compare/v1.0.0...v1.0.1) (2023-06-08)
+
+
+### Bug Fixes
+
+* use Math.hypot() ([b7403f2](https://github.com/mljs/affine-transform/commit/b7403f22736e50b77ecf62eb94699973847df634))
+
 ## 1.0.0 (2023-06-08)
 
 
