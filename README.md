@@ -40,13 +40,34 @@ export function getAffineTransform(
 ): AffineTransformParameters;
 ```
 
+## Coordinates system
+
+In this project, standard x and y as considered, as in mathematics (y pointing up and x to the right). The angles are expressed in degrees and positive angles are in anti-clockwise direction.
+
 ## Example
 
 ```js
-import { myModule } from 'ml-affine-transform';
+import Matrix from 'ml-matrix';
+import { getAffineTransform } from '../getAffineTransform';
 
-const result = myModule(args);
-// result is ...
+const sourceMatrix = new Matrix([
+  [1, 1, -3],
+  [2, -1, -1],
+  [1, 1, 1],
+]);
+const destinationMatrix = new Matrix([
+  [4, -2, -2],
+  [-2, -2, 6],
+  [1, 1, 1],
+]);
+
+const result = getAffineTransform(sourceMatrix, destinationMatrix);
+
+// result = {
+//   translation: { x: 0, y: 0 },
+//   scale: 2,
+//   rotation: -90,
+// }
 ```
 
 ## License
