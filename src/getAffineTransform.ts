@@ -96,5 +96,5 @@ export function getAffineTransform(
 }
 
 function getDistanceToOrigin(point: number[]): number {
-  return Math.sqrt(point[0] ** 2 + point[1] ** 2);
+  return Math.hypot(point[0], point[1]);
 }

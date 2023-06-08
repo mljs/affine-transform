@@ -5,7 +5,11 @@
   "main": "./lib/index.js",
   "module": "./lib-esm/index.js",
   "types": "./lib/index.d.ts",
-  "keywords": [],
+  "keywords": [
+    "affine transformation",
+    "image registration",
+    "2D transform"
+  ],
   "author": "Océane Patiny",
   "license": "MIT",
   "files": [
