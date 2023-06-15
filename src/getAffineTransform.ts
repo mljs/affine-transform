@@ -31,9 +31,9 @@ export function getAffineTransform(
       'Source and destination matrices should have same dimensions (same number of points).',
     );
   }
-  if (source.columns < 3) {
+  if (source.columns < 2) {
     throw new Error(
-      'Matrices should contains at least three points for the algorithm to run properly.',
+      'Matrices should contain at least two points for the algorithm to run properly.',
     );
   }
   const sourceCentroid = getCentroid(source);

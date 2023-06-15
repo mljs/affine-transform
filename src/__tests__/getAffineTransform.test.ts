@@ -250,21 +250,13 @@ describe('test errors messages', () => {
       'Source and destination matrices should have same dimensions (same number of points).',
     );
   });
-  it('there should be at least 3 points', () => {
-    const source = new Matrix([
-      [5, 1],
-      [-2, -2],
-      [1, 1],
-    ]);
-    const destination = new Matrix([
-      [2.5, 0.5],
-      [-1, -1],
-      [1, 1],
-    ]);
+  it('there should be at least 2 points', () => {
+    const source = new Matrix([[5], [-2], [1]]);
+    const destination = new Matrix([[2.5], [-1], [1]]);
     expect(() => {
       getAffineTransform(source, destination);
     }).toThrow(
-      'Matrices should contains at least three points for the algorithm to run properly.',
+      'Matrices should contain at least two points for the algorithm to run properly.',
     );
   });
 });
