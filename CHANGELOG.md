@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.3](https://github.com/mljs/affine-transform/compare/v1.0.2...v1.0.3) (2023-06-15)
+
+
+### Bug Fixes
+
+* min nb of points should be 2 not 3 ([3035109](https://github.com/mljs/affine-transform/commit/303510945ebb4fc2f2322d25005b37e876705be9))
+
 ## [1.0.2](https://github.com/mljs/affine-transform/compare/v1.0.1...v1.0.2) (2023-06-08)
 
 
