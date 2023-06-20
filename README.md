@@ -5,7 +5,7 @@
 [![Test coverage][codecov-image]][codecov-url]
 [![npm download][download-image]][download-url]
 
-Get and apply affine transform to 2D points.
+Get the affine transform from source to destination points (2D).
 
 ## Installation
 
@@ -26,7 +26,7 @@ When the transform is applied to a function, the operations are made in the foll
 
 ## API
 
-The inputs of the functions are 3xN matrices consisting of the source and the destination points. The third dimension for Z must be padded with ones. The output is an object containing the x and y translations as well as the anti-clockwise angle in degrees.
+The inputs of the functions are 3xN matrices consisting of the source and the destination points. The third dimension for Z must be padded with ones. The output is an object containing the x and y translations as well as the anti-clockwise angle in degrees. The points are must be 2D points with the last dimension padded.
 
 ```ts
 export interface AffineTransformParameters {
